@@ -16,18 +16,17 @@ Tools Used
 To bring this project to life, I utilized the following technologies:
 
 🔰 HTML: For structuring the content of the web pages.
+
 🔰 CSS: To style the application and enhance its visual appeal.
+
 🔰 Bootstrap: Ensured a responsive design for optimal viewing on various devices.
+
 🔰 Python: The programming language for backend logic.
+
 🔰 Django: The web framework that facilitated rapid development and clean design.
+
 🔰 SQLite & MySQL: For managing our database and storing dish data.
 
-
-🍋 Add New dish
-🍋 Book a table
-🍋 show Our Menu
-🍋 Opening Hours
-🍋 show ingredients
 
 Skills Demonstrated
 This project showcases several key programming skills:
