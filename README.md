@@ -1,4 +1,6 @@
-Little_Lemon 🍋
+README.md contains:
+# Little_Lemon 🍋
+
 
 Welcome to our Food Viewing Environment, where you can explore delicious culinary options! This platform includes features that allow users to:
 
