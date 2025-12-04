@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: little-lemon-service
 spec:
-  type: NodePort   # Change from ClusterIP to NodePort
+  type: ClusterIP
   selector:
     app: little-lemon
   ports:
     - port: 80
       targetPort: 8000
-      nodePort: 30080  # Optional: specify a node port (30000-32767), or omit for random
