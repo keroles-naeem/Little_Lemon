@@ -1,0 +1,69 @@
+# Datadog Helm values file for EKS deployment
+# Usage: helm install datadog-agent datadog/datadog -f datadog-values.yaml
+
+datadog:
+  # Replace with your actual Datadog API key (or use existing secret below)
+  # apiKey: "<YOUR_DATADOG_API_KEY>"
+  
+  # Alternatively, use an existing K8s secret:
+  apiKeyExistingSecret: datadog-api
+  apiKeyExistingSecretKey: api-key
+  
+  # Set to your Datadog site (datadoghq.com for US, datadoghq.eu for EU)
+  site: datadoghq.com
+  
+  # Enable Kubernetes API server monitoring
+  kubeStateMetricsEnabled: true
+  
+  # Enable kubelet metrics collection
+  kubelet:
+    enabled: true
+
+# Cluster Agent for advanced monitoring features
+clusterAgent:
+  enabled: true
+  replicas: 1
+  metricsProvider:
+    enabled: true
+    service:
+      type: ClusterIP
+      port: 8443
+
+# Node Agent (runs on each node)
+agents:
+  enabled: true
+  image:
+    tag: 7.50.0  # Update to latest stable version as needed
+  
+  # Resource limits for agent pods
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  
+  # Collect logs and trace data
+  containers:
+    agent:
+      env:
+        - name: DD_LOGS_ENABLED
+          value: "true"
+        - name: DD_CONTAINER_EXCLUDE
+          value: "name:datadog-agent"
+        - name: DD_APM_ENABLED
+          value: "true"
+
+# Enable Prometheus scraping for custom metrics
+prometheus:
+  enabled: true
+  scrape_interval: 30s
+
+# RBAC configuration
+rbac:
+  create: true
+  serviceAccountName: datadog-agent
+
+# Namespace where Datadog will be installed
+namespaceCreate: false

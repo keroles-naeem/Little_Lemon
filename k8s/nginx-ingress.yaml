@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: little-lemon-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: little-lemon-service
+            port:
+              number: 80
+  # Add a simple annotation to use the nginx ingress class
+  # (Ensure ingress-nginx is installed and its class name is `nginx`)
